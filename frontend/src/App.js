@@ -12,29 +12,30 @@ import {
   createTheme,
 } from '@mui/material';
 
+// New color palette assignments
 const colors = {
-  themeBlue: '#2596be',
-  themeYellow: '#eeb437',
-  themeGreen: '#899c3e',
-  themeBlack: '#1e363e',
-  themeOffWhite: '#fcf8d5',
+  paleBlue: '#D1E9F0',    // accent background/stripes
+  teal: '#79B4B7',        // primary accent/menu indicator
+  snow: '#F2F9F9',        // main background/off-white
+  forest: '#41634A',      // primary text, menu, headings
+  mint: '#A8CABA',        // paper, secondary bg, borders
 };
 
 const theme = createTheme({
   palette: {
-    primary: { main: colors.themeBlue },
-    secondary: { main: colors.themeYellow },
+    primary: { main: colors.teal },           // Main accent color (menu/tabs/active)
+    secondary: { main: colors.forest },       // Headings, selected, dark accent
     background: {
-      default: colors.themeOffWhite,
-      paper: '#fff',
+      default: colors.snow,                   // Page bg
+      paper: colors.mint,                     // Card/paper bg
     },
     text: {
-      primary: colors.themeBlack,
-      secondary: colors.themeGreen,
+      primary: colors.forest,
+      secondary: colors.teal,
     },
   },
   typography: {
-    allVariants: { color: colors.themeBlack },
+    allVariants: { color: colors.forest },
   },
 });
 
@@ -42,7 +43,7 @@ const sections = [
   {
     label: 'Services & Pricing',
     component: (
-      <Paper elevation={2} sx={{ p: 3, mt: 2 }}>
+      <Paper elevation={3} sx={{ p: 3, mt: 2, bgcolor: colors.mint }}>
         <Typography variant="h4">Services & Pricing</Typography>
         <Typography sx={{ mt: 2 }}>
           We offer custom software development, technical consulting, and MVP prototyping at competitive rates.
@@ -53,7 +54,7 @@ const sections = [
   {
     label: 'Testimonials',
     component: (
-      <Paper elevation={2} sx={{ p: 3, mt: 2 }}>
+      <Paper elevation={3} sx={{ p: 3, mt: 2, bgcolor: colors.mint }}>
         <Typography variant="h4">Testimonials</Typography>
         <Typography sx={{ mt: 2 }}>
           "Underdog Software delivered beyond our expectations!" – Happy Client
@@ -64,7 +65,7 @@ const sections = [
   {
     label: 'Demos',
     component: (
-      <Paper elevation={2} sx={{ p: 3, mt: 2 }}>
+      <Paper elevation={3} sx={{ p: 3, mt: 2, bgcolor: colors.mint }}>
         <Typography variant="h4">Demos</Typography>
         <Typography sx={{ mt: 2 }}>
           Demo projects and case studies coming soon.
@@ -75,7 +76,7 @@ const sections = [
   {
     label: 'Contact Us',
     component: (
-      <Paper elevation={2} sx={{ p: 3, mt: 2 }}>
+      <Paper elevation={3} sx={{ p: 3, mt: 2, bgcolor: colors.mint }}>
         <Typography variant="h4">Contact Us</Typography>
         <Typography sx={{ mt: 2 }}>
           Email: contact@underdogsoftware.com<br />
@@ -95,70 +96,39 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ flexGrow: 1, minHeight: '100vh', background: colors.themeOffWhite }}>
-        {/* Stripes & Logo Section */}
-        <Box>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              width: '100%',
-              position: 'relative',
-              pb: 6,
-            }}
-          >
-            {/* Stripes backgrounds */}
-            <Box sx={{ width: '100%', height: 56, bgcolor: colors.themeBlue }} />
-            <Box sx={{ width: '100%', height: 56, bgcolor: colors.themeGreen }} />
-            <Box
-              sx={{
-                width: '100%',
-                height: 56,
-                bgcolor: colors.themeYellow,
-                mb: '-84px',
-              }}
-            />
-            {/* Logo (overlapping all stripes, now left-justified, larger, transparent bg) */}
-            <Box
-              sx={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                zIndex: 2,
-                pt: 3,
-                pl: { xs: 2, sm: 4, md: 7 },
-              }}
-            >
-              <img
-                src={process.env.PUBLIC_URL + '/underdog_logo.png'}
-                alt="Underdog Logo"
-                style={{
-                  height: 276, // 50% larger than 184
-                  width: 'auto',
-                  borderRadius: 12,
-                  boxShadow: '0 4px 32px rgba(30,54,62,.08)',
-                  background: 'transparent',
-                  padding: 8,
-                }}
-              />
-            </Box>
-          </Box>
-        </Box>
-        {/* AppBar and Menu */}
+      <Box sx={{ flexGrow: 1, minHeight: '100vh', background: colors.snow }}>
+        {/* AppBar with logo at left, menu at right */}
         <AppBar
           position="static"
           elevation={0}
           sx={{
-            background: 'transparent',
+            background: colors.paleBlue,
             boxShadow: 'none',
-            color: colors.themeBlack,
+            color: colors.forest,
+            py: 1,
           }}
         >
-          <Toolbar sx={{ justifyContent: 'flex-end', px: { xs: 0, md: 4 } }}>
+          <Toolbar sx={{ justifyContent: 'space-between', minHeight: 120, px: { xs: 2, md: 4 } }}>
+            {/* Large left-aligned logo */}
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <img
+                src={process.env.PUBLIC_URL + '/underdog_logo.png'}
+                alt="Underdog Logo"
+                style={{
+                  height: 276,
+                  width: 'auto',
+                  marginRight: 30,
+                  background: 'transparent',
+                  borderRadius: 12,
+                  padding: 0,
+                }}
+              />
+            </Box>
+            {/* Right-justified menu */}
             <Tabs
               value={tabIdx}
               onChange={handleTabChange}
-              indicatorColor="secondary"
+              indicatorColor="primary"
               textColor="inherit"
               sx={{ minHeight: 48 }}
             >
@@ -166,7 +136,15 @@ function App() {
                 <Tab
                   label={section.label}
                   key={section.label}
-                  sx={{ textTransform: 'none', fontWeight: 600, minWidth: 160 }}
+                  sx={{
+                    textTransform: 'none',
+                    fontWeight: 600,
+                    minWidth: 160,
+                    color: colors.forest,
+                    '&.Mui-selected': {
+                      color: colors.teal,
+                    },
+                  }}
                 />
               ))}
             </Tabs>
@@ -178,8 +156,8 @@ function App() {
           sx={{
             mt: 4,
             mb: 6,
-            bgcolor: colors.themeOffWhite,
-            color: colors.themeBlack,
+            bgcolor: colors.snow,
+            color: colors.forest,
             minHeight: '400px',
             borderRadius: 3,
           }}
