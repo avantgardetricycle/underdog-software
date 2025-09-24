@@ -10,6 +10,7 @@ import {
   Paper,
   ThemeProvider,
   createTheme,
+  Slide,
 } from '@mui/material';
 
 // New color palette assignments
@@ -35,11 +36,12 @@ const theme = createTheme({
     },
   },
   typography: {
+    fontFamily: ['Funnel Sans', 'Arial', 'Helvetica', 'sans-serif'].join(','),
     allVariants: { color: colors.forest },
   },
 });
 
-const sections = [
+const sectionData = [
   {
     label: 'Services & Pricing',
     component: (
@@ -73,14 +75,13 @@ const sections = [
       </Paper>
     ),
   },
-  {
-    label: 'Contact Us',
+    {
+    label: 'Work with Us',
     component: (
       <Paper elevation={3} sx={{ p: 3, mt: 2, bgcolor: colors.mint }}>
-        <Typography variant="h4">Contact Us</Typography>
+        <Typography variant="h4">Work with Us</Typography>
         <Typography sx={{ mt: 2 }}>
-          Email: contact@underdogsoftware.com<br />
-          Phone: (123) 456-7890
+          Work with us.
         </Typography>
       </Paper>
     ),
@@ -89,10 +90,22 @@ const sections = [
 
 function App() {
   const [tabIdx, setTabIdx] = React.useState(0);
+  const [prevTabIdx, setPrevTabIdx] = React.useState(0);
+  const [slideIn, setSlideIn] = React.useState(true);
 
   const handleTabChange = (event, newValue) => {
-    setTabIdx(newValue);
+    if (newValue !== tabIdx) {
+      setSlideIn(false); // trigger exit
+      setTimeout(() => {
+        setPrevTabIdx(tabIdx); // for direction decision (optional, here for extensibility)
+        setTabIdx(newValue);
+        setSlideIn(true); // trigger entry for new section
+      }, 180); // must be < Slide's timeout, to avoid overlap
+    }
   };
+
+  // Swipe direction: left if increasing index, right otherwise
+  const direction = tabIdx > prevTabIdx ? 'left' : 'right';
 
   return (
     <ThemeProvider theme={theme}>
@@ -109,48 +122,86 @@ function App() {
           }}
         >
           <Toolbar sx={{ justifyContent: 'space-between', minHeight: 120, px: { xs: 2, md: 4 } }}>
-            {/* Large left-aligned logo */}
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            {/* Logo with company name and tagline to the right */}
+            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-end', minWidth: 0, pr: 3 }}>
+              {/* Logo */}
               <img
-                src={process.env.PUBLIC_URL + '/underdog_logo.png'}
+                src={process.env.PUBLIC_URL + '/underdog_logo_no_words.png'}
                 alt="Underdog Logo"
                 style={{
-                  height: 276,
+                  height: 138,
                   width: 'auto',
-                  marginRight: 30,
                   background: 'transparent',
                   borderRadius: 12,
                   padding: 0,
+                  display: 'block',
+                  marginRight: 18,
                 }}
               />
-            </Box>
-            {/* Right-justified menu */}
-            <Tabs
-              value={tabIdx}
-              onChange={handleTabChange}
-              indicatorColor="primary"
-              textColor="inherit"
-              sx={{ minHeight: 48 }}
-            >
-              {sections.map((section) => (
-                <Tab
-                  label={section.label}
-                  key={section.label}
+              {/* Company name and byline stacked */}
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'flex-end' }}>
+                <Typography
+                  variant="h3"
                   sx={{
-                    textTransform: 'none',
-                    fontWeight: 600,
-                    minWidth: 160,
+                    fontWeight: 700,
+                    fontSize: { xs: '2rem', md: '2.9rem' },
+                    letterSpacing: '.04em',
                     color: colors.forest,
-                    '&.Mui-selected': {
-                      color: colors.teal,
-                    },
+                    lineHeight: 1.07,
+                    fontFamily: 'Sigmar, Arial, Helvetica, sans-serif',
+                    mb: '-2px',
+                    whiteSpace: 'nowrap',
                   }}
-                />
-              ))}
-            </Tabs>
+                >
+                  UNDERDOG SOFTWARE
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    fontWeight: 400,
+                    fontSize: { xs: '1.18rem', md: '1.5rem' },
+                    color: colors.teal,
+                    letterSpacing: '.02em',
+                    fontStyle: 'italic',
+                    lineHeight: 1.27,
+                    mt: 0.5,
+                    pl: '2px',
+                  }}
+                >
+                  Technical expertise for the little guy
+                </Typography>
+              </Box>
+            </Box>
+            {/* Right-justified menu and Let's Chat button */}
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <Tabs
+                value={tabIdx}
+                onChange={handleTabChange}
+                indicatorColor="primary"
+                textColor="inherit"
+                sx={{ minHeight: 48 }}
+              >
+                {sectionData.map((section) => (
+                  <Tab
+                    label={section.label}
+                    key={section.label}
+                    sx={{
+                      textTransform: 'none',
+                      fontWeight: 400, // regular weight
+                      minWidth: 160,
+                      color: colors.forest,
+                      fontFamily: 'Funnel Sans, Arial, Helvetica, sans-serif',
+                      '&.Mui-selected': {
+                        color: colors.forest,
+                      },
+                    }}
+                  />
+                ))}
+              </Tabs>
+            </Box>
           </Toolbar>
         </AppBar>
-        {/* Main Content Section */}
+        {/* Main Content Section with swipe transition */}
         <Container
           maxWidth="md"
           sx={{
@@ -160,9 +211,24 @@ function App() {
             color: colors.forest,
             minHeight: '400px',
             borderRadius: 3,
+            fontFamily: 'Funnel Sans, Arial, Helvetica, sans-serif',
+            position: 'relative',
+            overflow: 'hidden',
           }}
         >
-          {sections[tabIdx].component}
+          <Slide
+            in={slideIn}
+            direction={direction}
+            timeout={{ enter: 350, exit: 180 }}
+            mountOnEnter
+            unmountOnExit
+            appear
+            key={tabIdx}
+          >
+            <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%' }}>
+              {sectionData[tabIdx].component}
+            </Box>
+          </Slide>
         </Container>
       </Box>
     </ThemeProvider>
