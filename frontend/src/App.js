@@ -5,14 +5,13 @@ import {
   Toolbar,
   Tabs,
   Tab,
-  Typography,
   Container,
-  Paper,
   ThemeProvider,
   createTheme,
   Slide,
   useScrollTrigger,
 } from '@mui/material';
+import { AboutSection, ServicesPricingSection, WorkWithUsSection } from './components/Sections';
 
 // New color palette assignments
 const colors = {
@@ -22,12 +21,14 @@ const colors = {
   forest: '#41634A',      // primary text, menu, headings
   mint: '#A8CABA',        // paper, secondary bg, borders
   darkGray: '#2F2F2F',    // primary dark text
+  blue: '#3f80a5',        // additional brand blue
 };
 
 const theme = createTheme({
   palette: {
     primary: { main: colors.teal },           // Main accent color (menu/tabs/active)
     secondary: { main: colors.forest },       // Headings, selected, dark accent
+    info: { main: colors.blue },              // Additional brand blue
     background: {
       default: colors.snow,                   // Page bg
       paper: colors.mint,                     // Card/paper bg
@@ -43,84 +44,6 @@ const theme = createTheme({
   },
 });
 
-const sectionData = [
-  {
-    label: 'About',
-    component: (
-      <Box sx={{ display: 'flex', height: '100%', alignItems: 'stretch' }}>
-        <Box
-          sx={{
-            flex: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            p: { xs: 2, md: 4 },
-          }}
-        >
-          <Typography
-            sx={{
-              fontFamily: 'Funnel Sans, Arial, Helvetica, sans-serif',
-              fontWeight: 800,
-              color: colors.darkGray,
-              lineHeight: 1,
-              fontSize: { xs: '2.2rem', md: '4rem' },
-            }}
-          >
-            Technical expertise
-          </Typography>
-          <Typography
-            sx={{
-              fontFamily: 'Funnel Sans, Arial, Helvetica, sans-serif',
-              fontWeight: 400,
-              color: colors.darkGray,
-              lineHeight: 1.1,
-              fontSize: { xs: '1.6rem', md: '2.4rem' },
-            }}
-          >
-            for the little guy
-          </Typography>
-        </Box>
-        <Box sx={{ flex: 1, position: 'relative', height: '100%', overflow: 'hidden' }}>
-          <img
-            src={process.env.PUBLIC_URL + '/computer_help.png'}
-            alt="Computer help"
-            style={{
-              position: 'absolute',
-              top: 0,
-              right: 0,
-              height: '100%',
-              width: '100%',
-              objectFit: 'cover',
-              objectPosition: 'top right',
-                                        }}
-          />
-        </Box>
-      </Box>
-    ),
-  },
-  {
-    label: 'Services & Pricing',
-    component: (
-      <Paper elevation={3} sx={{ p: 3, mt: 2, bgcolor: colors.mint }}>
-        <Typography variant="h4">Services & Pricing</Typography>
-        <Typography sx={{ mt: 2 }}>
-          We offer custom software development, technical consulting, and MVP prototyping at competitive rates.
-        </Typography>
-      </Paper>
-    ),
-  },
-  {
-    label: 'Work with Us',
-    component: (
-      <Paper elevation={3} sx={{ p: 3, mt: 2, bgcolor: colors.mint }}>
-        <Typography variant="h4">Work with Us</Typography>
-        <Typography sx={{ mt: 2 }}>
-          Work with us.
-        </Typography>
-      </Paper>
-    ),
-  },
-];
 
 function App() {
   const [tabIdx, setTabIdx] = React.useState(0);
@@ -141,6 +64,27 @@ function App() {
   // Swipe direction: left if increasing index, right otherwise
   const direction = tabIdx > prevTabIdx ? 'left' : 'right';
   const scrolled = useScrollTrigger({ disableHysteresis: true, threshold: 0 });
+
+  const sectionData = [
+    {
+      label: 'About',
+      component: (
+        <AboutSection colors={colors} onGoToServices={() => setTabIdx(1)} onGoToWorkWithUs={() => setTabIdx(2)} />
+      ),
+    },
+    {
+      label: 'Services & Pricing',
+      component: (
+        <ServicesPricingSection colors={colors} />
+      ),
+    },
+    {
+      label: 'Work with Us',
+      component: (
+        <WorkWithUsSection colors={colors} />
+      ),
+    },
+  ];
 
   return (
     <ThemeProvider theme={theme}>
