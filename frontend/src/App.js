@@ -10,8 +10,14 @@ import {
   createTheme,
   Slide,
   useScrollTrigger,
+  IconButton,
+  Menu,
+  MenuItem,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import { AboutSection, ServicesPricingSection, WorkWithUsSection } from './components/Sections';
+import MenuIcon from '@mui/icons-material/Menu';
 
 // New color palette assignments
 const colors = {
@@ -26,7 +32,7 @@ const colors = {
 
 const theme = createTheme({
   palette: {
-    primary: { main: colors.teal },           // Main accent color (menu/tabs/active)
+    primary: { main: colors.blue },           // Main accent color (menu/tabs/active)
     secondary: { main: colors.forest },       // Headings, selected, dark accent
     info: { main: colors.blue },              // Additional brand blue
     background: {
@@ -35,7 +41,7 @@ const theme = createTheme({
     },
     text: {
       primary: colors.darkGray,
-      secondary: colors.teal,
+      secondary: colors.blue,
     },
   },
   typography: {
@@ -64,6 +70,12 @@ function App() {
   // Swipe direction: left if increasing index, right otherwise
   const direction = tabIdx > prevTabIdx ? 'left' : 'right';
   const scrolled = useScrollTrigger({ disableHysteresis: true, threshold: 0 });
+  const themeM = useTheme();
+  const isMobile = useMediaQuery(themeM.breakpoints.down('sm'));
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
+  const handleCloseNavMenu = () => setAnchorElNav(null);
+  const handleSelectMenu = (index) => { setTabIdx(index); setAnchorElNav(null); };
 
   const sectionData = [
     {
@@ -119,37 +131,66 @@ function App() {
                 }}
               />
             </Box>
-            {/* Right-justified menu and Let's Chat button */}
+            {/* Right-justified menu: hamburger on mobile, tabs on desktop */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Tabs
-                value={tabIdx}
-                onChange={handleTabChange}
-                indicatorColor="primary"
-                textColor="inherit"
-                sx={{ minHeight: 48, '& .MuiTabs-indicator': { display: 'none' } }}
-              >
-                {sectionData.map((section) => (
-                  <Tab
-                    label={section.label}
-                    key={section.label}
-                    sx={{
-                      textTransform: 'none',
-                      fontWeight: 400, // regular weight
-                      fontSize: { xs: '1rem', md: '1.1rem' },
-                      minWidth: 120,
-                      color: colors.darkGray,
-                      fontFamily: 'Funnel Sans, Arial, Helvetica, sans-serif',
-                      border: section.label === 'Work with Us' ? `1px solid ${colors.teal}` : 'none',
-                      borderRadius: section.label === 'Work with Us' ? '9999px' : 0,
-                      px: section.label === 'Work with Us' ? 2 : undefined,
-                      py: section.label === 'Work with Us' ? 0.5 : undefined,
-                      '&.Mui-selected': {
+              {isMobile ? (
+                <>
+                  <IconButton
+                    size="large"
+                    aria-label="open navigation menu"
+                    aria-controls="nav-menu"
+                    aria-haspopup="true"
+                    onClick={handleOpenNavMenu}
+                    color="inherit"
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                  <Menu
+                    id="nav-menu"
+                    anchorEl={anchorElNav}
+                    open={Boolean(anchorElNav)}
+                    onClose={handleCloseNavMenu}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                    transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                  >
+                    {sectionData.map((section, index) => (
+                      <MenuItem key={section.label} onClick={() => handleSelectMenu(index)}>
+                        {section.label}
+                      </MenuItem>
+                    ))}
+                  </Menu>
+                </>
+              ) : (
+                <Tabs
+                  value={tabIdx}
+                  onChange={handleTabChange}
+                  indicatorColor="primary"
+                  textColor="inherit"
+                  sx={{ minHeight: 48, '& .MuiTabs-indicator': { display: 'none' } }}
+                >
+                  {sectionData.map((section) => (
+                    <Tab
+                      label={section.label}
+                      key={section.label}
+                      sx={{
+                        textTransform: 'none',
+                        fontWeight: 400, // regular weight
+                        fontSize: { xs: '1rem', md: '1.1rem' },
+                        minWidth: 120,
                         color: colors.darkGray,
-                      },
-                    }}
-                  />
-                ))}
-              </Tabs>
+                        fontFamily: 'Funnel Sans, Arial, Helvetica, sans-serif',
+                        border: section.label === 'Work with Us' ? `1px solid ${colors.blue}` : 'none',
+                        borderRadius: section.label === 'Work with Us' ? '9999px' : 0,
+                        px: section.label === 'Work with Us' ? 2 : undefined,
+                        py: section.label === 'Work with Us' ? 0.5 : undefined,
+                        '&.Mui-selected': {
+                          color: colors.darkGray,
+                        },
+                      }}
+                    />
+                  ))}
+                </Tabs>
+              )}
             </Box>
           </Toolbar>
         </AppBar>
@@ -161,11 +202,11 @@ function App() {
             mb: 0,
             bgcolor: colors.snow,
             color: colors.darkGray,
-            height: 'calc(100vh - 120px)',
+            height: { xs: 'auto', md: 'calc(100vh - 120px)' },
             borderRadius: 3,
             fontFamily: 'Funnel Sans, Arial, Helvetica, sans-serif',
             position: 'relative',
-            overflow: 'hidden',
+            overflow: { xs: 'visible', md: 'hidden' },
           }}
         >
           <Slide
@@ -177,7 +218,7 @@ function App() {
             appear
             key={tabIdx}
           >
-            <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+            <Box sx={{ position: { xs: 'relative', md: 'absolute' }, top: 0, left: 0, width: '100%', height: { xs: 'auto', md: '100%' } }}>
               {sectionData[tabIdx].component}
             </Box>
           </Slide>
