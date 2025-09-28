@@ -16,7 +16,9 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-import { AboutSection, ServicesPricingSection, WorkWithUsSection } from './components/Sections';
+import AboutSection from './components/AboutSection.jsx';
+import ServicesPricingSection from './components/ServicesPricingSection.jsx';
+import WorkWithUsSection from './components/WorkWithUsSection.jsx';
 import MenuIcon from '@mui/icons-material/Menu';
 
 // New color palette assignments
@@ -28,6 +30,7 @@ const colors = {
   mint: '#A8CABA',        // paper, secondary bg, borders
   darkGray: '#2F2F2F',    // primary dark text
   blue: '#3f80a5',        // additional brand blue
+  lightBlue: '#9ec4db',   // lighter variant for navbar
 };
 
 const theme = createTheme({
@@ -106,7 +109,7 @@ function App() {
           position="fixed"
           elevation={0}
           sx={{
-            background: colors.snow,
+            background: colors.paleBlue,
             boxShadow: 'none',
             color: colors.darkGray,
             py: 1,
