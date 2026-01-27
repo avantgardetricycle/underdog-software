@@ -9,6 +9,7 @@
     "prestart": "npm --prefix frontend install",
     "start": "npm --prefix frontend start",
     "build": "npm --prefix frontend run build",
+    "build:docs": "npm --prefix frontend run build:docs",
     "test": "npm --prefix frontend test",
     "postinstall": "npm --prefix frontend install"
   },
