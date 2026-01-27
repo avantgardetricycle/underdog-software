@@ -1,6 +1,6 @@
 import { ArrowRight, Sparkles } from "lucide-react";
-const logo = process.env.PUBLIC_URL + "/logo_without_text.jpg";
-const heroImage = process.env.PUBLIC_URL + "/header_image.jpg";
+const logo = process.env.PUBLIC_URL + "/logo_without_text.png";
+const heroImage = process.env.PUBLIC_URL + "/header_image.png";
 
 export function Hero() {
   const scrollToContact = () => {

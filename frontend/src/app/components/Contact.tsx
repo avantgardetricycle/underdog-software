@@ -25,10 +25,10 @@ export function Contact() {
                 <span className="font-medium text-slate-900">Email</span>
               </div>
               <a
-                href="mailto:hello@underdogsoftware.com"
+                href="mailto:hello@underdogsoftware.xyz"
                 className="text-lg font-medium text-blue-600 hover:text-blue-700"
               >
-                hello@underdogsoftware.com
+                hello@underdogsoftware.xyz
               </a>
             </div>
 
