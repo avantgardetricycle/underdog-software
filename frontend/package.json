@@ -21,7 +21,6 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build:docs": "react-scripts build && rm -rf ../docs && mkdir -p ../docs && cp -r build/* ../docs/ && touch ../docs/.nojekyll && [ -f ../CNAME ] && cp ../CNAME ../docs/CNAME || true",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
