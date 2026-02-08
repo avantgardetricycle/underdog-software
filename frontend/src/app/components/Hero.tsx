@@ -36,7 +36,7 @@ export function Hero() {
           </div>
           
           <div className="hidden items-center gap-1 md:flex">
-            {["About", "Products", "Experience"].map((item) => (
+            {["About", "Products", "Services", "Experience"].map((item) => (
               <button
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}

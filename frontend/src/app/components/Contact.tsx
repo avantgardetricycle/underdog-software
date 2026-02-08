@@ -14,7 +14,7 @@ export function Contact() {
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-slate-600">
               Interested in collaborating on a project or learning more about
-              our products? Get in touch.
+              our services? Get in touch.
             </p>
           </div>
 
@@ -34,8 +34,7 @@ export function Contact() {
 
             <div className="mt-4 text-center">
               <p className="text-slate-600">
-                Available for small-to-medium sized projects with recurring
-                revenue potential.
+                Available for both long-term product development collaborations and one-off projects for small businesses and non-profits.
               </p>
             </div>
           </div>

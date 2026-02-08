@@ -9,8 +9,7 @@ export function About() {
             Why Underdog Software?
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-slate-600">
-            We're a small team that thinks big, focused on building products
-            that generate sustainable recurring revenue.
+            We're a small team that thinks big, focused on building sustainable products and helping small organizations thrive with better technology.
           </p>
         </div>
 
@@ -46,11 +45,10 @@ export function About() {
               <Target className="h-6 w-6 text-emerald-600" />
             </div>
             <h3 className="mb-3 text-xl text-slate-900">
-              Recurring Revenue Model
+              Sustainable Growth
             </h3>
             <p className="text-slate-600">
-              Every project is designed with sustainability in mind, creating
-              long-term value for users and the business.
+              Whether it's a recurring revenue product or a one-off project, we build software designed for long-term value and stability.
             </p>
           </div>
         </div>

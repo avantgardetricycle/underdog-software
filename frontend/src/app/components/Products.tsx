@@ -1,4 +1,4 @@
-import { ShoppingBag, Smartphone, Rocket } from "lucide-react";
+import { ExternalLink, ShoppingBag, Smartphone, Rocket } from "lucide-react";
 
 export function Products() {
   const products = [
@@ -8,12 +8,13 @@ export function Products() {
       category: "Shopify App",
       description:
         "A Shopify app that enables merchants to automatically split revenue between multiple collaborators, perfect for partnerships and affiliate programs.",
-      status: "Live",
+      url: "https://app.revsplit.app",
+      status: "Coming Soon",
       statusColor: "bg-emerald-100 text-emerald-700",
     },
     {
       icon: Smartphone,
-      name: "Focus Shield",
+      name: "Eject Now",
       category: "Mobile App",
       description:
         "A phone addiction management app that helps users stay focused by hiding distracting apps on a customizable schedule.",
@@ -62,7 +63,16 @@ export function Products() {
                     {product.status}
                   </span>
                 </div>
-                <h3 className="mb-2 text-2xl text-slate-900">{product.name}</h3>
+                <h3 className="mb-2 text-2xl text-slate-900">
+                  {product.url ? (
+                    <a href={product.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:underline">
+                      {product.name}
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                  ) : (
+                    product.name
+                  )}
+                </h3>
                 <p className="mb-4 text-sm font-medium text-slate-500">{product.category}</p>
                 <p className="text-slate-600">{product.description}</p>
               </div>

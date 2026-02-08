@@ -4,6 +4,7 @@ import { Products } from "./app/components/Products";
 import { Experience } from "./app/components/Experience";
 import { Contact } from "./app/components/Contact";
 import { Footer } from "./app/components/Footer";
+import { Services } from "./app/components/Services";
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
       <Hero />
       <About />
       <Products />
+      <Services />
       <Experience />
       <Contact />
       <Footer />
