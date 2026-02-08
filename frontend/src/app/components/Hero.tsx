@@ -1,14 +1,19 @@
-import { ArrowRight, Sparkles } from "lucide-react";
+import { useState } from "react";
+import { ArrowRight, Menu, Sparkles, X } from "lucide-react";
 const logo = process.env.PUBLIC_URL + "/logo_without_text.png";
 const heroImage = process.env.PUBLIC_URL + "/header_image.png";
 
 export function Hero() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const scrollToContact = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+    setMobileMenuOpen(false);
   };
 
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setMobileMenuOpen(false);
   };
 
   return (
@@ -52,7 +57,39 @@ export function Hero() {
               Contact
             </button>
           </div>
+
+          {/* Mobile hamburger button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden rounded-lg p-2 text-slate-600 hover:bg-slate-100 transition-colors"
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
+
+        {/* Mobile menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-slate-100 bg-white/95 backdrop-blur-md px-6 py-4">
+            <div className="flex flex-col gap-1">
+              {["About", "Products", "Services", "Experience"].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item.toLowerCase())}
+                  className="rounded-lg px-4 py-3 text-left text-sm font-medium text-slate-600 transition-all hover:bg-teal-50 hover:text-teal-700"
+                >
+                  {item}
+                </button>
+              ))}
+              <button
+                onClick={scrollToContact}
+                className="mt-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-bold text-white transition-all hover:bg-teal-600"
+              >
+                Contact
+              </button>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
@@ -101,6 +138,12 @@ export function Hero() {
                   className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-lg font-bold text-slate-900 transition-all hover:border-teal-200 hover:bg-teal-50 hover:text-teal-900"
                 >
                   View Our Work
+                </button>
+                <button
+                  onClick={() => scrollToSection("services")}
+                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-lg font-bold text-slate-900 transition-all hover:border-teal-200 hover:bg-teal-50 hover:text-teal-900"
+                >
+                  View Our Services
                 </button>
               </div>
             </div>
