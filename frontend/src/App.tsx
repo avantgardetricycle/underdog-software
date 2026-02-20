@@ -4,15 +4,15 @@ import { Products } from "./app/components/Products";
 import { Experience } from "./app/components/Experience";
 import { Contact } from "./app/components/Contact";
 import { Footer } from "./app/components/Footer";
-import { Services } from "./app/components/Services";
+import { PartnershipModels } from "./app/components/PartnershipModels";
 
 export default function App() {
   return (
     <div className="min-h-screen bg-white">
       <Hero />
       <About />
+      <PartnershipModels />
       <Products />
-      <Services />
       <Experience />
       <Contact />
       <Footer />

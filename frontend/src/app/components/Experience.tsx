@@ -68,13 +68,16 @@ export function Experience() {
               "React",
               "TypeScript",
               "Node.js",
+              ".NET Framework",
               "Payment APIs",
               "E-commerce",
-              "Mobile Development",
+              "Mobile & Web Development",
               "Cloud Infrastructure",
               "Database Design",
-              "API Development",
-              "System Architecture",
+              "Third-party integrations",
+              "Shopify",
+              "Squarespace",
+              "Wordpress"
             ].map((skill) => (
               <span
                 key={skill}

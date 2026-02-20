@@ -9,7 +9,10 @@ export function About() {
             Why Underdog Software?
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-slate-600">
-            We're a small team that thinks big, focused on building sustainable products and helping small organizations thrive with better technology.
+            At Underdog, we know that small business owners just need technology that works. Your tech should be reliable and easy to use, without breaking your budget. 
+          </p>
+          <p className="mx-auto max-w-2xl text-lg text-slate-600">
+            That's where Underdog comes in. Whether it's a custom Shopify app, a website rebuild, or troubleshooting a software integration, we're here to help make your technology work for you.
           </p>
         </div>
 
@@ -22,8 +25,8 @@ export function About() {
               Deep Technical Expertise
             </h3>
             <p className="text-slate-600">
-              12 years of software development experience, with 6 years
-              specializing in payments and financial systems.
+              12 years of software development experience at places like Patreon and Checkr, with 6 years
+              specializing in payments and financial systems. 
             </p>
           </div>
 
@@ -32,11 +35,10 @@ export function About() {
               <Sparkles className="h-6 w-6 text-teal-600" />
             </div>
             <h3 className="mb-3 text-xl text-slate-900">
-              Product-Focused Development
+              Tech for Small, Non-Technical Orgs and Businesses
             </h3>
             <p className="text-slate-600">
-              Building practical solutions that solve real problems, from
-              e-commerce tools to productivity apps.
+              We build practical, reliable technical solutions that save you time, tedium and frustration.
             </p>
           </div>
 
@@ -45,10 +47,10 @@ export function About() {
               <Target className="h-6 w-6 text-emerald-600" />
             </div>
             <h3 className="mb-3 text-xl text-slate-900">
-              Sustainable Growth
+              Flexible Ways of Working
             </h3>
             <p className="text-slate-600">
-              Whether it's a recurring revenue product or a one-off project, we build software designed for long-term value and stability.
+              We work in whatever way best aligns with your business and your needs, from one-off tech support to full software built-outs.
             </p>
           </div>
         </div>

@@ -41,13 +41,18 @@ export function Hero() {
           </div>
           
           <div className="hidden items-center gap-1 md:flex">
-            {["About", "Products", "Services", "Experience"].map((item) => (
+            {[
+              { label: "About", id: "about" },
+              { label: "Products", id: "products" },
+              { label: "Services", id: "work-together" },
+              { label: "Experience", id: "experience" },
+            ].map((item) => (
               <button
-                key={item}
-                onClick={() => scrollToSection(item.toLowerCase())}
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
                 className="rounded-full px-5 py-2 text-sm font-medium text-slate-600 transition-all hover:bg-teal-50 hover:text-teal-700"
               >
-                {item}
+                {item.label}
               </button>
             ))}
             <button
@@ -72,13 +77,18 @@ export function Hero() {
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-slate-100 bg-white/95 backdrop-blur-md px-6 py-4">
             <div className="flex flex-col gap-1">
-              {["About", "Products", "Services", "Experience"].map((item) => (
+              {[
+                { label: "About", id: "about" },
+                { label: "Products", id: "products" },
+                { label: "Services", id: "work-together" },
+                { label: "Experience", id: "experience" },
+              ].map((item) => (
                 <button
-                  key={item}
-                  onClick={() => scrollToSection(item.toLowerCase())}
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
                   className="rounded-lg px-4 py-3 text-left text-sm font-medium text-slate-600 transition-all hover:bg-teal-50 hover:text-teal-700"
                 >
-                  {item}
+                  {item.label}
                 </button>
               ))}
               <button
@@ -120,8 +130,7 @@ export function Hero() {
               </h2>
               
               <p className="mb-8 max-w-lg text-lg text-slate-600 lg:text-xl leading-relaxed">
-                Creating practical, revenue-generating applications with a focus on
-                payments, e-commerce, and productivity tools.
+                Creating practical, high-quality software for small businesses and non-profits. 
               </p>
               
               <div className="flex flex-col gap-4 w-full sm:flex-row sm:w-auto">
@@ -137,13 +146,7 @@ export function Hero() {
                   onClick={() => scrollToSection("products")}
                   className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-lg font-bold text-slate-900 transition-all hover:border-teal-200 hover:bg-teal-50 hover:text-teal-900"
                 >
-                  View Our Work
-                </button>
-                <button
-                  onClick={() => scrollToSection("services")}
-                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-lg font-bold text-slate-900 transition-all hover:border-teal-200 hover:bg-teal-50 hover:text-teal-900"
-                >
-                  View Our Services
+                  How We Work
                 </button>
               </div>
             </div>

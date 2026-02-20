@@ -37,11 +37,10 @@ export function Products() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl text-slate-900 lg:text-4xl">
-            Our Products
+            Underdog Products
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-slate-600">
-            Building a portfolio of sustainable software products across
-            e-commerce and productivity.
+            Check out a few examples of products we've already built for organizations just like yours.
           </p>
         </div>
 
