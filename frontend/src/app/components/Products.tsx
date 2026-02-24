@@ -1,4 +1,4 @@
-import { ExternalLink, ShoppingBag, Smartphone, Rocket } from "lucide-react";
+import { ExternalLink, ShoppingBag, Layout, Rocket } from "lucide-react";
 
 export function Products() {
   const products = [
@@ -13,11 +13,11 @@ export function Products() {
       statusColor: "bg-emerald-100 text-emerald-700",
     },
     {
-      icon: Smartphone,
-      name: "Eject Now",
-      category: "Mobile App",
+      icon: Layout,
+      name: "BetterBlog",
+      category: "Squarespace Plugin",
       description:
-        "A phone addiction management app that helps users stay focused by hiding distracting apps on a customizable schedule.",
+        "A Squarespace plugin that allows users to customize their Squarespace-hosted legacy blog.",
       status: "In Development",
       statusColor: "bg-blue-100 text-blue-700",
     },
