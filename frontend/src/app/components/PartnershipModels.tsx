@@ -39,7 +39,7 @@ export function PartnershipModels() {
             
             <div className="mt-auto space-y-4 mb-8">
               {[
-                "Fixed project fee (starting at $5K)",
+                "Fixed project fee based on complexity and scope",
                 "You own 100% of the code and IP",
                 "Built specifically for your business needs",
                 "30 days post-launch support included",
