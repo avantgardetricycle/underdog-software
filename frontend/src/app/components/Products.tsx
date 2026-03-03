@@ -17,9 +17,10 @@ export function Products() {
       name: "BetterBlog",
       category: "Squarespace Plugin",
       description:
-        "A Squarespace plugin that allows users to customize their Squarespace-hosted legacy blog.",
-      status: "In Development",
-      statusColor: "bg-blue-100 text-blue-700",
+        "A Squarespace plugin that allows users to customize their Squarespace-hosted legacy blog. Built in collaboration with WeGo! Oakland.",
+      url: "https://www.betterblog.xyz",
+      status: "Coming Soon",
+      statusColor: "bg-emerald-100 text-emerald-700",
     },
     {
       icon: Rocket,
