@@ -12,7 +12,7 @@ export function About() {
             At Underdog, we know that small business owners just need technology that works. Your tech should be reliable and easy to use, without breaking your budget. 
           </p>
           <p className="mx-auto max-w-2xl text-lg text-slate-600">
-            That's where Underdog comes in. Whether it's a custom Shopify app, a website rebuild, or troubleshooting a software integration, we're here to help make your technology work for you.
+            That's where Underdog comes in. Whether it's a custom app, a website rebuild, or troubleshooting a software integration, we're here to help make your technology work for you.
           </p>
         </div>
 
