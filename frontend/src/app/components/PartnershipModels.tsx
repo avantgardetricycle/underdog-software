@@ -8,7 +8,7 @@ export function PartnershipModels() {
           <h2 className="mb-4 text-3xl text-slate-900 lg:text-4xl">Ways to Work Together</h2>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 font-sans">
             Whether you need custom software, want to co-create a product, or just 
-            need a one-off service—I've got you covered.
+            need a one-off service, we've got you covered.
           </p>
         </div>
 
