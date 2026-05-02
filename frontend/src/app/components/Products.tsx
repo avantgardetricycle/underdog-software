@@ -64,9 +64,10 @@ export function Products() {
     },
     {
       name: "Prague Clock",
-      category: "macOS Screensaver",
+      category: "Browser Simulator & macOS Screensaver",
       description:
-        "A macOS screensaver that captures the magic of the most sophisticated mechanical clock on Earth.",
+        "A free browser-based simulator and macOS screensaver that captures the magic of the most sophisticated mechanical clock on Earth.",
+      url: "https://www.pragueclock.xyz",
       status: "In Development",
       statusColor: "bg-blue-100 text-blue-700",
       logoSrc: `${publicUrl}/prague_clock_logo.png`,
