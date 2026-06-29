@@ -24,8 +24,8 @@ export function Products() {
       description:
         "A Shopify app that enables merchants to automatically split revenue between multiple collaborators, perfect for partnerships and affiliate programs.",
       url: "https://app.revsplit.app",
-      status: "Coming Soon",
-      statusColor: "bg-emerald-100 text-emerald-700",
+      status: "Live",
+      statusColor: "bg-violet-100 text-violet-800",
       logoSrc: `${publicUrl}/revsplit_logo.png`,
     },
     {
@@ -43,6 +43,7 @@ export function Products() {
       category: "Mobile App",
       description:
         "An AI coach specially designed to support addiction recovery.",
+      url: "https://getbuoy.app",
       status: "In Development",
       statusColor: "bg-blue-100 text-blue-700",
       logoSrc: `${publicUrl}/buoy_logo.png`,
