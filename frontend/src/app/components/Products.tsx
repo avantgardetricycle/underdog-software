@@ -14,6 +14,8 @@ type Product = {
   quote?: { text: string; attribution: string };
   /** Optional screenshot / preview under public/ */
   previewSrc?: string;
+  /** Grid column start on large screens (e.g. 2 for centered third row) */
+  colStart?: 2 | 3;
 };
 
 export function Products() {
@@ -40,12 +42,12 @@ export function Products() {
     },
     {
       name: "Buoy",
-      category: "Mobile App",
+      category: "Web & Mobile App",
       description:
         "An AI coach specially designed to support addiction recovery.",
       url: "https://getbuoy.app",
-      status: "In Development",
-      statusColor: "bg-blue-100 text-blue-700",
+      status: "Live",
+      statusColor: "bg-violet-100 text-violet-800",
       logoSrc: `${publicUrl}/buoy_logo.png`,
     },
     {
@@ -69,8 +71,8 @@ export function Products() {
       description:
         "A free browser-based simulator and macOS screensaver that captures the magic of the most sophisticated mechanical clock on Earth.",
       url: "https://www.pragueclock.xyz",
-      status: "In Development",
-      statusColor: "bg-blue-100 text-blue-700",
+      status: "Live",
+      statusColor: "bg-violet-100 text-violet-800",
       logoSrc: `${publicUrl}/prague_clock_logo.png`,
       previewSrc: `${publicUrl}/prague_clock_preview.png`,
     },
@@ -84,6 +86,17 @@ export function Products() {
       statusColor: "bg-violet-100 text-violet-800",
       logoSrc: `${publicUrl}/garden_clock_logo.png`,
       previewSrc: `${publicUrl}/garden_clock_preview_image.png`,
+    },
+    {
+      name: "NestTrack",
+      category: "Web & Mobile App",
+      description:
+        "An app for tracking real estate listings in one place, powered by AI.",
+      url: "https://www.nesttrack.xyz",
+      status: "Live",
+      statusColor: "bg-violet-100 text-violet-800",
+      logoSrc: `${publicUrl}/nesttrack_logo.png`,
+      colStart: 2,
     },
   ];
 
@@ -103,7 +116,7 @@ export function Products() {
           {products.map((product) => (
             <div
               key={product.name}
-              className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-shadow hover:shadow-md"
+              className={`rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-shadow hover:shadow-md${product.colStart === 2 ? " lg:col-start-2" : ""}`}
             >
               <div className="mb-4 flex items-start justify-between gap-3">
                 <div className="flex h-14 min-w-0 max-w-[140px] flex-shrink-0 items-center justify-start rounded-xl bg-slate-50 p-2 ring-1 ring-slate-100">
