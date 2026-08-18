@@ -2,14 +2,13 @@
   "name": "underdog-software",
   "version": "1.0.0",
   "private": true,
-  "workspaces": [
-    "frontend"
-  ],
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "prestart": "npm --prefix frontend install",
     "start": "npm --prefix frontend start",
     "build": "npm --prefix frontend run build",
-    "test": "npm --prefix frontend test",
-    "postinstall": "npm --prefix frontend install"
+    "test": "npm --prefix frontend test"
   }
 }
