@@ -11,8 +11,5 @@
     "build": "npm --prefix frontend run build",
     "test": "npm --prefix frontend test",
     "postinstall": "npm --prefix frontend install"
-  },
-  "dependencies": {
-    "lucide-react": "^0.563.0"
   }
 }
