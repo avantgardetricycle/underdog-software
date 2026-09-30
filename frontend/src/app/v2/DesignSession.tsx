@@ -49,6 +49,15 @@ function Segment<T extends string>({
   );
 }
 
+const publicUrl = process.env.PUBLIC_URL ?? "";
+
+const pieces = [
+  { src: `${publicUrl}/pottery-bowls.jpg`, label: "Small bowls" },
+  { src: `${publicUrl}/pottery-serving.jpg`, label: "Serving bowl" },
+  { src: `${publicUrl}/pottery-plate.jpg`, label: "Plates" },
+  { src: `${publicUrl}/pottery-dish.jpg`, label: "Little dishes" },
+];
+
 export function DesignSession() {
   const [layout, setLayout] = useState<Layout>("split");
   const [palette, setPalette] = useState<Palette>("clay");
@@ -136,7 +145,7 @@ export function DesignSession() {
                 <div>
                   <h4>Wheel-thrown stoneware from a small studio in the hills.</h4>
                   <p>
-                    Mugs, bowls, and vases fired in small batches.
+                    Bowls, plates, and vases fired in small batches.
                     <span className="m-full">
                       {" "}
                       Every piece is glazed by hand, so no two are quite alike. Weekend wheel
@@ -145,13 +154,17 @@ export function DesignSession() {
                   </p>
                   <span className="m-cta">See the collection</span>
                 </div>
-                <div className="m-img" role="img" aria-label="Illustrated vase and bowl" />
+                <div className="m-img">
+                  <img src={`${publicUrl}/pottery-vases.jpg`} alt="Two bud vases, each holding a rose" />
+                </div>
               </div>
               <div className="m-seam" aria-hidden="true" dangerouslySetInnerHTML={{ __html: seams[seam] }} />
               <div className="m-work">
-                <div>Speckled mugs</div>
-                <div>Serving bowls</div>
-                <div>Bud vases</div>
+                {pieces.map((piece) => (
+                  <div key={piece.label} style={{ backgroundImage: `url(${piece.src})` }}>
+                    <span>{piece.label}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

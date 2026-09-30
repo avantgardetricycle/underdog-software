@@ -823,11 +823,11 @@
 
 /* Sample client site — its own palettes, set by the design-session controls */
 .v2 .mock {
-  --m-bg: #f3ede4;
-  --m-ink: #2b211b;
-  --m-muted: #6e5f53;
-  --m-accent: #b4532a;
-  --m-panel: #e7ddd0;
+  --m-bg: #f6f1ea;
+  --m-ink: #3b2a24;
+  --m-muted: #7d675c;
+  --m-accent: #9a3f49;
+  --m-panel: #efe4d8;
   background: var(--m-bg);
   color: var(--m-ink);
   transition: background 0.5s var(--ease), color 0.5s var(--ease);
@@ -835,19 +835,19 @@
 }
 
 .v2 .mock[data-palette="ink"] {
-  --m-bg: #f7f7f4;
-  --m-ink: #111111;
-  --m-muted: #5c5c58;
-  --m-accent: #0f766e;
-  --m-panel: #e9e9e3;
+  --m-bg: #f3f5f7;
+  --m-ink: #1b2430;
+  --m-muted: #5d6874;
+  --m-accent: #2c5f8a;
+  --m-panel: #e6ebf0;
 }
 
 .v2 .mock[data-palette="moss"] {
-  --m-bg: #1e2620;
-  --m-ink: #edebdd;
-  --m-muted: #a9ae9c;
-  --m-accent: #c9d86b;
-  --m-panel: #28322a;
+  --m-bg: #24302a;
+  --m-ink: #f4f0e6;
+  --m-muted: #c5c0b2;
+  --m-accent: #e7d3bf;
+  --m-panel: #2e3b34;
 }
 
 .v2 .m-nav {
@@ -928,12 +928,16 @@
   aspect-ratio: 4 / 3;
   border-radius: 8px;
   max-width: 100%;
-  background:
-    radial-gradient(circle at 30% 65%, color-mix(in srgb, var(--m-accent) 85%, transparent) 0 17%, transparent 17.5%),
-    radial-gradient(ellipse at 62% 60%, var(--m-ink) 0 19%, transparent 19.5%),
-    radial-gradient(ellipse at 62% 34%, var(--m-panel) 0 9%, transparent 9.5%),
-    linear-gradient(180deg, var(--m-panel) 0 62%, color-mix(in srgb, var(--m-panel) 70%, var(--m-ink)) 62%);
-  transition: background 0.5s;
+  overflow: hidden;
+  background: var(--m-panel);
+}
+
+.v2 .m-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
 }
 
 .v2 .m-seam {
@@ -950,7 +954,7 @@
 
 .v2 .m-work {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 12px;
   padding: clamp(16px, 4%, 28px);
   background: var(--m-panel);
@@ -958,15 +962,32 @@
 }
 
 .v2 .m-work div {
-  aspect-ratio: 1;
+  position: relative;
+  aspect-ratio: 4 / 3;
   border-radius: 6px;
-  background: color-mix(in srgb, var(--m-ink) 10%, var(--m-bg));
+  background-size: cover;
+  background-position: center;
   display: grid;
   align-content: end;
   padding: 10px;
   font: 600 11px/1.2 var(--f-body);
   letter-spacing: 0.02em;
-  color: var(--m-muted);
+  color: #fff;
+  overflow: hidden;
+}
+
+.v2 .m-work div::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 48%;
+  background: linear-gradient(transparent, rgba(24, 18, 14, 0.62));
+}
+
+.v2 .m-work div span {
+  position: relative;
 }
 
 .v2 .m-full {
@@ -988,10 +1009,6 @@
 
   .v2 .m-work {
     grid-template-columns: 1fr 1fr;
-  }
-
-  .v2 .m-work div:nth-child(3) {
-    display: none;
   }
 }
 
