@@ -24,7 +24,7 @@ export function CaseStudy() {
     <section id="work">
       <div className="wrap">
         <div className="sec-head">
-          <p className="eyebrow">Case study · an artist’s website</p>
+          <p className="eyebrow">Case study · a musician’s website</p>
           <h2>From a dated Squarespace site to a sharp custom build, in three weeks.</h2>
           <p className="lede">
             A full rebuild for independent musician Jon Lawton: new design, new structure, and an
@@ -98,7 +98,7 @@ export function CaseStudy() {
             “Scott at Underdog Software is so helpful, knowledgeable, and nice. He helped me take my website from
             scrub brush, funky to a tight, all-pro look and I can’t recommend him enough.”
           </blockquote>
-          <figcaption>Jon Lawton · independent artist</figcaption>
+          <figcaption>Jon Lawton · independent musician</figcaption>
         </figure>
       </div>
     </section>

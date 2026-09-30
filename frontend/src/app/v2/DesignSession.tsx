@@ -3,17 +3,11 @@ import { useState } from "react";
 type Layout = "split" | "centered";
 type Palette = "clay" | "ink" | "moss";
 type Copy = "short" | "full";
-type Seam = "line" | "wave" | "curl";
+type Seam = "line" | "wave" | "none";
 
-const curlPaths = Array.from({ length: 10 }, (_, i) => {
-  const x = i * 40;
-  return `<path d="M${x} 8 H${x + 14} c4 0 6-5 3-6.5s-6 1-4 4.5M${x + 26} 8 H${x + 40} M${x + 26} 8 c-4 0-6 5-3 6.5s6-1 4-4.5"/>`;
-}).join("");
-
-const seams: Record<Seam, string> = {
+const seams: Record<Exclude<Seam, "none">, string> = {
   line: '<svg viewBox="0 0 400 16" preserveAspectRatio="none"><rect x="0" y="7" width="400" height="2" fill="currentColor"/></svg>',
   wave: '<svg viewBox="0 0 400 16" preserveAspectRatio="none"><path d="M0 8 Q 12.5 0 25 8 T 50 8 T 75 8 T 100 8 T 125 8 T 150 8 T 175 8 T 200 8 T 225 8 T 250 8 T 275 8 T 300 8 T 325 8 T 350 8 T 375 8 T 400 8" fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>',
-  curl: `<svg viewBox="0 0 400 16" preserveAspectRatio="xMidYMid meet" style="overflow:visible"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">${curlPaths}</g></svg>`,
 };
 
 function Segment<T extends string>({
@@ -112,7 +106,7 @@ export function DesignSession() {
               options={[
                 { value: "line", label: "Line" },
                 { value: "wave", label: "Wave" },
-                { value: "curl", label: "Curl" },
+                { value: "none", label: "None" },
               ]}
             />
             <p className="note">
@@ -128,11 +122,11 @@ export function DesignSession() {
                 <i />
                 <i />
               </div>
-              <div className="url">draft.hollowpinestudio.com</div>
+              <div className="url">draft.usefulpots.com</div>
             </div>
             <div className="mock" data-layout={layout} data-palette={palette} data-copy={copy}>
               <div className="m-nav">
-                <strong>Hollow Pine Studio</strong>
+                <strong>Useful Pots</strong>
                 <nav>
                   <span>Work</span>
                   <span>Classes</span>
@@ -142,7 +136,7 @@ export function DesignSession() {
               </div>
               <div className="m-hero">
                 <div>
-                  <h4>Wheel-thrown stoneware from a small studio in the hills.</h4>
+                  <h4>Wheel-thrown porcelain from a small studio in Minnesota.</h4>
                   <p>
                     Bowls, plates, and vases fired in small batches.
                     <span className="m-full">
@@ -157,7 +151,9 @@ export function DesignSession() {
                   <img src={`${publicUrl}/pottery-plate.jpg`} alt="A painted plate with slices of fruit on the grass" />
                 </div>
               </div>
-              <div className="m-seam" aria-hidden="true" dangerouslySetInnerHTML={{ __html: seams[seam] }} />
+              {seam !== "none" && (
+                <div className="m-seam" aria-hidden="true" dangerouslySetInnerHTML={{ __html: seams[seam] }} />
+              )}
               <div className="m-work">
                 {pieces.map((piece) => (
                   <div key={piece.label} style={{ backgroundImage: `url(${piece.src})` }}>
