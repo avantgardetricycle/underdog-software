@@ -45,7 +45,7 @@ export function Contact() {
       <div className="wrap contact">
         <div>
           <p className="eyebrow">Start a project</p>
-          <h2>Let’s build a site you’ll actually keep up to date.</h2>
+          <h2>Let’s build the site you deserve.</h2>
           <p className="lede">
             Tell us a little about your business, org, or practice and what you want the site to
             do. We’ll reply within a couple of days with next steps.
@@ -74,7 +74,7 @@ export function Contact() {
                 minLength={10}
                 maxLength={5000}
                 rows={5}
-                placeholder="What you do and who it’s for, a site or two you like the feel of, and your timeline."
+                placeholder="Tell us a little about your project and timeline."
               />
             </label>
             <label className="hp" aria-hidden="true">

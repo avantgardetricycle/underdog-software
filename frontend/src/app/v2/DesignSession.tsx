@@ -54,8 +54,7 @@ const publicUrl = process.env.PUBLIC_URL ?? "";
 const pieces = [
   { src: `${publicUrl}/pottery-bowls.jpg`, label: "Small bowls" },
   { src: `${publicUrl}/pottery-serving.jpg`, label: "Serving bowl" },
-  { src: `${publicUrl}/pottery-plate.jpg`, label: "Plates" },
-  { src: `${publicUrl}/pottery-dish.jpg`, label: "Little dishes" },
+  { src: `${publicUrl}/pottery-dish.jpg`, label: "Little dish" },
 ];
 
 export function DesignSession() {
@@ -155,7 +154,7 @@ export function DesignSession() {
                   <span className="m-cta">See the collection</span>
                 </div>
                 <div className="m-img">
-                  <img src={`${publicUrl}/pottery-vases.jpg`} alt="Two bud vases, each holding a rose" />
+                  <img src={`${publicUrl}/pottery-plate.jpg`} alt="A painted plate with slices of fruit on the grass" />
                 </div>
               </div>
               <div className="m-seam" aria-hidden="true" dangerouslySetInnerHTML={{ __html: seams[seam] }} />

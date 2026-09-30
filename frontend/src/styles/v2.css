@@ -86,6 +86,16 @@
   max-width: 62ch;
 }
 
+.v2 .lede a {
+  color: var(--accent-deep);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.v2 .lede a:hover {
+  color: var(--blue);
+}
+
 .v2 section {
   padding-block: clamp(64px, 10vw, 120px);
   scroll-margin-top: 88px;
@@ -936,7 +946,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 30%;
+  object-position: center;
   display: block;
 }
 
@@ -954,7 +964,7 @@
 
 .v2 .m-work {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 12px;
   padding: clamp(16px, 4%, 28px);
   background: var(--m-panel);

@@ -27,8 +27,9 @@ export function CaseStudy() {
           <p className="eyebrow">Case study · an artist’s website</p>
           <h2>From a dated Squarespace site to a sharp custom build, in three weeks.</h2>
           <p className="lede">
-            A full rebuild for an independent artist: new design, new structure, and an edit
-            portal he now uses for his own updates. Drag the handle to compare.
+            A full rebuild for independent musician Jon Lawton: new design, new structure, and an
+            edit portal he now uses for his own updates. Drag the handle to compare. See Jon’s new
+            site <a href="https://jonlawton.net" target="_blank" rel="noopener noreferrer">here</a>.
           </p>
         </div>
 
