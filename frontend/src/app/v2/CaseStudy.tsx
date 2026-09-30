@@ -130,10 +130,10 @@ export function CaseStudy() {
 
         <figure className="quote">
           <blockquote>
-            “Scott is so helpful, knowledgeable, and nice. He helped me take my website from
+            “Scott at Underdog Software is so helpful, knowledgeable, and nice. He helped me take my website from
             scrub brush, funky to a tight, all-pro look and I can’t recommend him enough.”
           </blockquote>
-          <figcaption>Jon L. · independent artist</figcaption>
+          <figcaption>Jon Lawton · independent artist</figcaption>
         </figure>
       </div>
     </section>

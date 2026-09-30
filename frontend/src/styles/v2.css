@@ -1697,7 +1697,7 @@
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: clamp(28px, 5vw, 64px);
-  align-items: end;
+  align-items: start;
 }
 
 .v2 .contact > * {
@@ -1716,6 +1716,7 @@
 }
 
 .v2 .mail-card {
+  position: relative;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -1725,48 +1726,55 @@
   box-shadow: 0 20px 50px -36px rgba(15, 23, 42, 0.4);
 }
 
-.v2 .mail-row {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.v2 .mail {
-  font: 600 clamp(15px, 2.2vw, 18px) / 1.3 var(--f-body);
-  color: var(--accent-deep);
-  text-decoration: none;
-  word-break: break-all;
-  flex: 1;
-  min-width: 0;
-}
-
-.v2 .mail:hover {
-  text-decoration: underline;
-}
-
-.v2 .copy {
-  font: 700 13px/1 var(--f-body);
-  padding: 10px 14px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: transparent;
-  color: var(--ink);
-  cursor: pointer;
-}
-
-.v2 .copy:hover {
-  border-color: var(--accent);
-  color: var(--accent-deep);
-}
-
-.v2 .mail-card ul {
-  margin: 0;
-  padding: 0 0 0 18px;
-  color: var(--muted);
-  font-size: 15px;
+.v2 .field {
   display: grid;
-  gap: 4px;
+  gap: 8px;
+}
+
+.v2 .field input,
+.v2 .field textarea {
+  width: 100%;
+  font: 400 15px/1.5 var(--f-body);
+  color: var(--ink);
+  background: var(--sunk);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 12px 14px;
+}
+
+.v2 .field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.v2 .field input:focus,
+.v2 .field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.v2 .form-thanks {
+  font: 600 1.15rem/1.4 var(--f-display);
+  letter-spacing: -0.02em;
+}
+
+.v2 .form-error {
+  margin: 0;
+  color: #b91c1c;
+  font-size: 14px;
+}
+
+.v2 .hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.v2 .mail-card .btn {
+  justify-self: start;
 }
 
 @media (max-width: 860px) {
