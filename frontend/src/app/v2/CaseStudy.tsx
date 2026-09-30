@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const publicUrl = process.env.PUBLIC_URL ?? "";
+
 const wins = [
   ["Readability", "Clear type, shorter lines, and text that works on a phone."],
   ["Professional look", "A custom visual identity in place of a stock template."],
@@ -32,48 +34,10 @@ export function CaseStudy() {
 
         <div className="ba" style={{ ["--pos" as string]: `${pos}%` }}>
           <div className="ba-pane ba-after" aria-label="After: the new custom site">
-            <div className="ba-ph after-ph" aria-hidden="true">
-              <div className="ph-nav">
-                <b />
-                <span />
-                <span />
-                <span />
-              </div>
-              <div className="ph-hero">
-                <div>
-                  <i className="h1" />
-                  <i className="h2" />
-                  <i className="p" />
-                  <i className="p s" />
-                  <i className="btnph" />
-                </div>
-                <div className="ph-photo" />
-              </div>
-              <div className="ph-cards">
-                <div />
-                <div />
-                <div />
-              </div>
-            </div>
+            <img src={`${publicUrl}/jon-after.jpg`} alt="The rebuilt Jon Lawton site" />
           </div>
           <div className="ba-pane ba-before" aria-label="Before: the old Squarespace site">
-            <div className="ba-ph before-ph" aria-hidden="true">
-              <div className="ph-banner" />
-              <div className="ph-wall">
-                <i />
-                <i className="s" />
-                <i />
-                <i className="s" />
-                <i />
-                <i />
-                <i className="s" />
-                <i />
-              </div>
-              <div className="ph-mess">
-                <div />
-                <div />
-              </div>
-            </div>
+            <img src={`${publicUrl}/jon-before.jpg`} alt="The old Squarespace site" />
           </div>
           <span className="ba-tag l">Before · Squarespace</span>
           <span className="ba-tag r">After · Underdog</span>
