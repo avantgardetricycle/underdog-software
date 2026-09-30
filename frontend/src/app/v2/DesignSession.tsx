@@ -1,0 +1,162 @@
+import { useState } from "react";
+
+type Layout = "split" | "centered";
+type Palette = "clay" | "ink" | "moss";
+type Copy = "short" | "full";
+type Seam = "line" | "wave" | "curl";
+
+const curlPaths = Array.from({ length: 10 }, (_, i) => {
+  const x = i * 40;
+  return `<path d="M${x} 8 H${x + 14} c4 0 6-5 3-6.5s-6 1-4 4.5M${x + 26} 8 H${x + 40} M${x + 26} 8 c-4 0-6 5-3 6.5s6-1 4-4.5"/>`;
+}).join("");
+
+const seams: Record<Seam, string> = {
+  line: '<svg viewBox="0 0 400 16" preserveAspectRatio="none"><rect x="0" y="7" width="400" height="2" fill="currentColor"/></svg>',
+  wave: '<svg viewBox="0 0 400 16" preserveAspectRatio="none"><path d="M0 8 Q 12.5 0 25 8 T 50 8 T 75 8 T 100 8 T 125 8 T 150 8 T 175 8 T 200 8 T 225 8 T 250 8 T 275 8 T 300 8 T 325 8 T 350 8 T 375 8 T 400 8" fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>',
+  curl: `<svg viewBox="0 0 400 16" preserveAspectRatio="xMidYMid meet" style="overflow:visible"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">${curlPaths}</g></svg>`,
+};
+
+function Segment<T extends string>({
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  label: string;
+  value: T;
+  options: { value: T; label: string }[];
+  onChange: (value: T) => void;
+}) {
+  const id = `ctl-${label.replace(/\s+/g, "-").toLowerCase()}`;
+  return (
+    <div className="ctl">
+      <span className="ctl-label" id={id}>
+        {label}
+      </span>
+      <div className="seg" role="group" aria-labelledby={id}>
+        {options.map((option) => (
+          <button
+            key={option.value}
+            type="button"
+            aria-pressed={value === option.value}
+            onClick={() => onChange(option.value)}
+          >
+            {option.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function DesignSession() {
+  const [layout, setLayout] = useState<Layout>("split");
+  const [palette, setPalette] = useState<Palette>("clay");
+  const [copy, setCopy] = useState<Copy>("short");
+  const [seam, setSeam] = useState<Seam>("line");
+
+  return (
+    <section id="session" className="band">
+      <div className="wrap">
+        <div className="sec-head">
+          <p className="eyebrow">Step 02, up close</p>
+          <h2>Try a design session.</h2>
+          <p className="lede">
+            This is how the draft of your site works. Each control is a decision we’d make
+            together, and you see it on the page instantly. This is a sample site for a
+            ceramics studio.
+          </p>
+        </div>
+        <div className="session">
+          <div className="controls">
+            <Segment
+              label="Layout"
+              value={layout}
+              onChange={setLayout}
+              options={[
+                { value: "split", label: "Split" },
+                { value: "centered", label: "Centered" },
+              ]}
+            />
+            <Segment
+              label="Palette"
+              value={palette}
+              onChange={setPalette}
+              options={[
+                { value: "clay", label: "Clay" },
+                { value: "ink", label: "Ink" },
+                { value: "moss", label: "Moss" },
+              ]}
+            />
+            <Segment
+              label="Intro text"
+              value={copy}
+              onChange={setCopy}
+              options={[
+                { value: "short", label: "Concise" },
+                { value: "full", label: "Full" },
+              ]}
+            />
+            <Segment
+              label="Section border"
+              value={seam}
+              onChange={setSeam}
+              options={[
+                { value: "line", label: "Line" },
+                { value: "wave", label: "Wave" },
+                { value: "curl", label: "Curl" },
+              ]}
+            />
+            <p className="note">
+              When you’ve decided, the controls are removed and your choices become the final
+              site.
+            </p>
+          </div>
+
+          <div className="browser">
+            <div className="browser-bar">
+              <div className="dots" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+              </div>
+              <div className="url">draft.hollowpinestudio.com</div>
+            </div>
+            <div className="mock" data-layout={layout} data-palette={palette} data-copy={copy}>
+              <div className="m-nav">
+                <strong>Hollow Pine Studio</strong>
+                <nav>
+                  <span>Work</span>
+                  <span>Classes</span>
+                  <span>About</span>
+                  <span>Visit</span>
+                </nav>
+              </div>
+              <div className="m-hero">
+                <div>
+                  <h4>Wheel-thrown stoneware from a small studio in the hills.</h4>
+                  <p>
+                    Mugs, bowls, and vases fired in small batches.
+                    <span className="m-full">
+                      {" "}
+                      Every piece is glazed by hand, so no two are quite alike. Weekend wheel
+                      classes run year-round for beginners and returning potters.
+                    </span>
+                  </p>
+                  <span className="m-cta">See the collection</span>
+                </div>
+                <div className="m-img" role="img" aria-label="Illustrated vase and bowl" />
+              </div>
+              <div className="m-seam" aria-hidden="true" dangerouslySetInnerHTML={{ __html: seams[seam] }} />
+              <div className="m-work">
+                <div>Speckled mugs</div>
+                <div>Serving bowls</div>
+                <div>Bud vases</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
