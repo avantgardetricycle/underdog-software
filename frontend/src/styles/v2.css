@@ -102,6 +102,18 @@
   font-size: clamp(2rem, 4.4vw, 3.1rem);
 }
 
+.v2 .talk-link {
+  justify-self: start;
+  font: 700 15px/1 var(--f-body);
+  color: var(--accent-deep);
+  text-decoration: none;
+}
+
+.v2 .talk-link:hover {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
 .v2 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;

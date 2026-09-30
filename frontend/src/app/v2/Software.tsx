@@ -64,23 +64,6 @@ const products: Product[] = [
     linkLabel: "gardenclock.xyz",
     logo: `${publicUrl}/garden_clock_logo.png`,
   },
-  {
-    kind: "Website",
-    name: "Dana Lawton Dances",
-    description:
-      "Online home for a Bay Area multigenerational modern dance company. A custom site shaped around the company’s work.",
-    href: "https://danalawtondances.org",
-    linkLabel: "danalawtondances.org",
-    logo: `${publicUrl}/DLD_logo.jpg`,
-  },
-  {
-    kind: "Custom builds",
-    name: "Web apps & AI integrations",
-    description:
-      "Internal tools, customer portals, and AI features wired into the systems you already use. Scoped small, shipped quickly.",
-    href: "#contact",
-    linkLabel: "Talk about a build",
-  },
 ];
 
 export function Software() {
@@ -91,9 +74,12 @@ export function Software() {
           <p className="eyebrow">Beyond websites</p>
           <h2>Need something custom? We build software too.</h2>
           <p className="lede">
-            Alongside websites, we build apps, plugins, and AI products. If your business or org
-            needs more than a site, that work is on the table.
+            Need more than a website? We also build apps, plugins, and a range of AI-powered
+            products.
           </p>
+          <a className="talk-link" href="#contact">
+            Talk about a build →
+          </a>
         </div>
         <div className="soft-grid">
           {products.map((product) => {
