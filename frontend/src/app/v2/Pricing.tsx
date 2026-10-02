@@ -23,6 +23,8 @@ function Check() {
   );
 }
 
+const buildPrice = 2500;
+
 const money = (amount: number) =>
   amount.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 
@@ -48,7 +50,7 @@ export function Pricing() {
               <span className="ctl-label">Website build</span>
               <p className="price">
                 <span className="from">from</span>
-                <span className="amt">$1,800</span>
+                <span className="amt">{money(buildPrice)}</span>
                 <span className="per">one-time</span>
               </p>
               <p className="plan-sub">
@@ -106,7 +108,7 @@ export function Pricing() {
               <dl>
                 <div>
                   <dt>First year</dt>
-                  <dd>{money(1800 + (portalOn ? 50 : 0))}</dd>
+                  <dd>{money(buildPrice + (portalOn ? 50 : 0))}</dd>
                 </div>
                 <div>
                   <dt>Each year after</dt>

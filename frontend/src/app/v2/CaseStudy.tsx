@@ -1,6 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const publicUrl = process.env.PUBLIC_URL ?? "";
+const SLIDE_MS = 5000;
+
+const beforeShots = [
+  { src: `${publicUrl}/jon-before.jpg`, alt: "The old Squarespace homepage" },
+  { src: `${publicUrl}/jon-old-1.jpg`, alt: "The old Squarespace music page" },
+  { src: `${publicUrl}/jon-old-2.jpg`, alt: "The old Squarespace about page" },
+  { src: `${publicUrl}/jon-old-3.jpg`, alt: "The old Squarespace reviews page" },
+];
+
+const afterShots = [
+  { src: `${publicUrl}/jon-new-3.jpg`, alt: "The new music page" },
+  { src: `${publicUrl}/jon-new-1.jpg`, alt: "The new about page" },
+  { src: `${publicUrl}/jon-new-2.jpg`, alt: "The new shows page" },
+  { src: `${publicUrl}/jon-after.jpg`, alt: "The rebuilt Jon Lawton homepage" },
+];
 
 const wins = [
   ["Readability", "Clear type, shorter lines, and text that works on a phone."],
@@ -19,6 +34,14 @@ const log = [
 
 export function CaseStudy() {
   const [pos, setPos] = useState(50);
+  const [slide, setSlide] = useState(0);
+
+  useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+    const id = window.setInterval(() => setSlide((current) => current + 1), SLIDE_MS);
+    return () => window.clearInterval(id);
+  }, []);
 
   return (
     <section id="work">
@@ -35,10 +58,26 @@ export function CaseStudy() {
 
         <div className="ba" style={{ ["--pos" as string]: `${pos}%` }}>
           <div className="ba-pane ba-after" aria-label="After: the new custom site">
-            <img src={`${publicUrl}/jon-after.jpg`} alt="The rebuilt Jon Lawton site" />
+            {afterShots.map((shot, index) => (
+              <img
+                key={shot.src}
+                src={shot.src}
+                alt={index === slide % afterShots.length ? shot.alt : ""}
+                aria-hidden={index === slide % afterShots.length ? undefined : true}
+                className={index === slide % afterShots.length ? "is-on" : undefined}
+              />
+            ))}
           </div>
           <div className="ba-pane ba-before" aria-label="Before: the old Squarespace site">
-            <img src={`${publicUrl}/jon-before.jpg`} alt="The old Squarespace site" />
+            {beforeShots.map((shot, index) => (
+              <img
+                key={shot.src}
+                src={shot.src}
+                alt={index === slide % beforeShots.length ? shot.alt : ""}
+                aria-hidden={index === slide % beforeShots.length ? undefined : true}
+                className={index === slide % beforeShots.length ? "is-on" : undefined}
+              />
+            ))}
           </div>
           <span className="ba-tag l">Before · Squarespace</span>
           <span className="ba-tag r">After · Underdog</span>
