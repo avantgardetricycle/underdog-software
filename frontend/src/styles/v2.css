@@ -1042,14 +1042,24 @@
 .v2 .ba-pane {
   position: absolute;
   inset: 0;
+  isolation: isolate;
 }
 
 .v2 .ba-pane img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top;
   display: block;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+.v2 .ba-pane img.is-on {
+  opacity: 1;
+  z-index: 1;
 }
 
 .v2 .ba-before {
@@ -1058,6 +1068,7 @@
 
 .v2 .ba-handle {
   position: absolute;
+  z-index: 2;
   top: 0;
   bottom: 0;
   left: var(--pos);
@@ -1086,6 +1097,7 @@
 
 .v2 .ba-range {
   position: absolute;
+  z-index: 3;
   inset: 0;
   width: 100%;
   height: 100%;
@@ -1096,6 +1108,7 @@
 
 .v2 .ba-tag {
   position: absolute;
+  z-index: 2;
   top: 12px;
   font: 700 11px/1 var(--f-body);
   letter-spacing: 0.06em;
