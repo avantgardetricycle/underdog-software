@@ -29,15 +29,6 @@ const products: Product[] = [
     logo: `${publicUrl}/revsplit_logo.png`,
   },
   {
-    kind: "Web app",
-    name: "NestTrack",
-    description:
-      "A house-hunting tracker that uses AI to pull listing details into one place, with search, filters, and notes from every tour.",
-    href: "https://nesttrack.xyz",
-    linkLabel: "nesttrack.xyz",
-    logo: `${publicUrl}/nesttrack_logo.png`,
-  },
-  {
     kind: "Squarespace plugin",
     name: "BetterBlog",
     description:
@@ -45,24 +36,6 @@ const products: Product[] = [
     href: "https://www.betterblog.xyz",
     linkLabel: "betterblog.xyz",
     logo: `${publicUrl}/better_blog_logo.png`,
-  },
-  {
-    kind: "Screensaver",
-    name: "Prague Astronomical Clock",
-    description:
-      "A faithful recreation of the medieval clock in Prague’s Old Town, with every hand and dial tracking the real date and time.",
-    href: "https://www.pragueclock.xyz",
-    linkLabel: "pragueclock.xyz",
-    logo: `${publicUrl}/prague_clock_logo.png`,
-  },
-  {
-    kind: "Screensaver",
-    name: "Garden Clock",
-    description:
-      "A macOS screensaver that turns an idle screen into a living garden, with a working analog clock.",
-    href: "https://www.gardenclock.xyz",
-    linkLabel: "gardenclock.xyz",
-    logo: `${publicUrl}/garden_clock_logo.png`,
   },
 ];
 
